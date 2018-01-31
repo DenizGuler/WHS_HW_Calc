@@ -2,7 +2,7 @@
 
 {% block content %}
 	<p>You chose:</p>
-	{% for class in schedule.values %}
+	{% for class in schedule.values() %}
 		{{class}}
 	{% endfor %}
 	<h2>Time of completion:</h2>

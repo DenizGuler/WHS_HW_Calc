@@ -4,8 +4,10 @@ from django.http import HttpResponseRedirect
 
 
 def calculator(request):
+	print(request.method)
 	if request.method == 'POST':
 		form = ScheduleForm(request.POST)
+		print(form)
 		if True:
 			schedule = {}
 			schedule['blockA'] = form.cleaned_data['blockA']
@@ -15,10 +17,10 @@ def calculator(request):
 			schedule['blockE'] = form.cleaned_data['blockE']
 			schedule['blockF'] = form.cleaned_data['blockF']
 			schedule['blockG'] = form.cleaned_data['blockG']
-		print("schedule: " + schedule)
+		print("schedule: " + str(schedule))
 		return time_display(request, schedule)
 	else:
-		print('uhh')
+		print('not a post')
 		form = ScheduleForm()
 		context = {'blocks':['A','B','C'],'form':form}
 		return render(request, 'Calculator/index.html', context)
