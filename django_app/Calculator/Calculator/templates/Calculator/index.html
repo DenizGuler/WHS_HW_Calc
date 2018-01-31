@@ -1,0 +1,15 @@
+{% extends "Calculator/base.html" %}
+
+{% block content %}
+
+    <form id="schedule_form" action="/time_display" method="post">
+		{% csrf_token %}
+		{% for field in form.visible_fields %}
+			{{field.help_text}}<br>
+			{{field}}<br>
+			<br>
+		{% endfor %}
+		<input type = "submit" value="Submit"/>
+    </form>
+	</br>
+{% endblock %}

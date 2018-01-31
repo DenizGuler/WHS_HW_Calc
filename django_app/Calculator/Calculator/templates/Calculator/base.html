@@ -1,0 +1,45 @@
+{% load static %}
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style type="text/css">
+
+      #banner{
+        margin: 10px;
+        width: 98%;
+        background-color: #6F0000;
+        color: #000000;
+        padding: 4px;
+      }
+      #main{
+        width: 100%;
+        margin: 20px;
+        color: #000000
+      }
+      body{
+        font-family: 'Roboto', sans-serif;
+        background-color: #FFFFFF
+      }
+      h1{
+        text-align: left;
+        color: #000000
+      }
+    </style>
+    <title>WinchesterHC</title>
+  </head>
+  <body>
+    <div id=banner>
+      <img src="{% static "Sachems-Logo-Collegate-no-text.png" %}" alt="Sachems Logo" width="132px" height="100px">
+    </div>
+
+    <div id=main>
+      <h1>Welcome</h1>
+      <p id=title>WinchesterHC</p>
+    </div>
+    <div>
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+
+</html>
