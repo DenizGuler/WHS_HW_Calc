@@ -48,6 +48,7 @@ def get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
+# Gets a range of values using 'Sheet1!(range)' range is in the format of 'A1:B2'
 def get(range):
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
@@ -64,17 +65,16 @@ def get(range):
     values = result.get('values', [])
     return values
 
+# Converts two ranges into one dict(key, value)
 def toDict(key, val):
     keys = []
     vals = []
     values = get(key)
     for row in values:
         keys.append(row[0])
-        print(row[0])
     values = get(val)
     for row in values:
         vals.append(row[0])
-        print(vals)
     return dict(zip(keys, vals))
 
 def main():
