@@ -72,9 +72,11 @@ def toDict(key, val):
     values = get(key)
     for row in values:
         keys.append(row[0])
+        #print(row[0])
     values = get(val)
     for row in values:
         vals.append(row[0])
+        #print(vals)
     return dict(zip(keys, vals))
 
 def main():
