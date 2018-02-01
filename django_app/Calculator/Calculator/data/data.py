@@ -48,13 +48,7 @@ def get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
-def main():
-    """Shows basic usage of the Sheets API.
-
-    Creates a Sheets API service object and prints the names and majors of
-    students in a sample spreadsheet:
-    https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-    """
+def get(range):
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?'
@@ -64,16 +58,39 @@ def main():
 
     spreadsheetId = '1Dnt8QajzCWO8bIW8dzkm-4UJy6Tve9cwuhCC8Ijc_RQ'
     # Range: B column is class names, D column is class data
-    rangeName = 'Sheet1!B8:D10'
     result = service.spreadsheets().values().get(
-        spreadsheetId=spreadsheetId, range=rangeName).execute()
+        spreadsheetId=spreadsheetId, range=range).execute()
 
     values = result.get('values', [])
+    return values
+
+def toDict(key, val):
+    keys = []
+    vals = []
+    values = get(key)
+    for row in values:
+        keys.append(row[0])
+        print(row[0])
+    values = get(val)
+    for row in values:
+        vals.append(row[0])
+        print(vals)
+    return dict(zip(keys, vals))
+
+def main():
+    """Shows basic usage of the Sheets API.
+
+    Creates a Sheets API service object and prints the names and majors of
+    students in a sample spreadsheet:
+    https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+    """
+    values = get('Sheet1!B8:D10')
 
     if not values:
         print('No data found.')
     else:
         print('Name, Major:')
+        print(toDict('Sheet1!B8:B10','Sheet1!D8:D10'))
         for row in values:
             # Print to console. Row 0 is column B; 2 is D
             print('%s, %s' % (row[0], row[2]))
