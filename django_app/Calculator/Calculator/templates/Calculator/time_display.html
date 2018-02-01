@@ -1,10 +1,10 @@
 {% extends "Calculator/base.html" %}
 
 {% block content %}
-	<p>You chose:</p>
-	{% for class in schedule.values %}
-		{{class}}
-	{% endfor %}
 	<h2>Time of completion:</h2>
-	{{time}}
+	<h1>{{time}}<h1>
+	<h3>Time Breakdown:</h3>
+	{% for class, time in schedule %}
+		<p><strong>{{class}}</strong> takes <strong>{{time}}</strong> minutes per day</p>
+	{% endfor %}
 {% endblock %}

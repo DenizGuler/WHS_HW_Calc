@@ -1,7 +1,10 @@
 from django import forms
 from .models import Name
+import pandas as pd
 
-all_classes = [('French 2','French 2'), ('French 3 (CP)','French 3 (CP)'), ('Intro to Italian Languange and Culture 2','Intro to Italian Languange and Culture 2')]
+data = pd.read_csv('Calculator/HomeworkSurvey_results_final.xlsx - Sheet1.csv',header=5,names=['Quartile 1','Median','Quartile 3','None','Number of Responses'])
+all_classes = [(x,x) for x in list(data.index)]
+#all_classes = [('French 2','French 2'), ('French 3 (CP)','French 3 (CP)'), ('Intro to Italian Languange and Culture 2','Intro to Italian Languange and Culture 2')]
 class ScheduleForm(forms.ModelForm):
 	blockA = forms.ChoiceField(choices=all_classes, help_text="A Block")
 	blockB = forms.ChoiceField(choices=all_classes, help_text="B Block")
