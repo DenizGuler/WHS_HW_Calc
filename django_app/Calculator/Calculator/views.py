@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .forms import ScheduleForm
+from .forms import ScheduleForm, get_classes
 from django.http import HttpResponseRedirect
+from dal import autocomplete
 import pandas as pd
 
 def calculator(request):
@@ -17,7 +18,7 @@ def calculator(request):
 			schedule['blockE'] = form.cleaned_data['blockE']
 			schedule['blockF'] = form.cleaned_data['blockF']
 			schedule['blockG'] = form.cleaned_data['blockG']
-		print("schedule: " + str(schedule))	
+		print("schedule: " + str(schedule))
 		return time_display(request, schedule)
 	else:
 		print('not a post')
@@ -46,3 +47,7 @@ def calc_time(schedule):
 		print(block)
 	print("sfsdafasdfasdfasdf", new_schedule)
 	return new_schedule, total
+
+class ClassAutocomplete(autocomplete.Select2ListView):
+	def get_list(self):
+		return get_classes()
