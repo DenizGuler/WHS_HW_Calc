@@ -31,7 +31,8 @@ def time_display(request, schedule=None):
 		context = {'schedule':{'dummy':"dummy_val"},'time':100}
 	else:
 		new_schedule, total = calc_time(schedule)
-		context = {'schedule':new_schedule,'time':total}
+		time = to_hrs(total)
+		context = {'schedule':new_schedule,'hours':time[0], 'mins':time[1], 'time':total}
 		print(context)
 	return render(request, 'Calculator/time_display.html', context)
 
@@ -45,8 +46,15 @@ def calc_time(schedule):
 		new_schedule.append((class_name,median_time_spent))
 		total += median_time_spent
 		print(block)
+	total *= 5/7
 	print("sfsdafasdfasdfasdf", new_schedule)
 	return new_schedule, total
+
+def to_hrs(time):
+	hours = time/60//1
+	mins = round(round(time % 1, 2) * 60, 0)
+	return [int(hours), int(mins)]
+
 
 class ClassAutocomplete(autocomplete.Select2ListView):
 	def get_list(self):

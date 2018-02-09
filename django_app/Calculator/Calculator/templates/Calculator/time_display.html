@@ -1,8 +1,8 @@
 {% extends "Calculator/base.html" %}
 
 {% block content %}
-	<h2>Time of completion:</h2>
-	<h1>{{time}}<h1>
+	<h2>Estimated Nightly Homework:</h2>
+	<h1>{{hours}} hours and {{mins}} minutes<h1>
 	<h3>Time Breakdown:</h3>
 	{% for class, time in schedule %}
 		<p><strong>{{class}}</strong> takes <strong>{{time}}</strong> minutes per day</p>

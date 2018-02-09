@@ -13,11 +13,14 @@ def get_classes():
 #all_classes = [('French 2','French 2'), ('French 3 (CP)','French 3 (CP)'), ('Intro to Italian Languange and Culture 2','Intro to Italian Languange and Culture 2')]
 class ScheduleForm(forms.ModelForm):
 	#blockA = autocomplete.ListSelect2(url='class-autocomplete')
+	"""
 	blockA = autocomplete.Select2ListChoiceField(
         choice_list=get_classes,
         widget=autocomplete.ListSelect2(url='class-autocomplete'),
 		help_text="A Block"
     )
+	"""
+	blockA = forms.ChoiceField(choices=all_classes, help_text="A Block")
 	#testA = forms.ModelChoiceField(queryset=all_classes, widget=autocomplete.ModelSelect2(url='classes-autocomplete'))
 	blockB = forms.ChoiceField(choices=all_classes, help_text="B Block")
 	blockC = forms.ChoiceField(choices=all_classes, help_text="C Block")
