@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from dal import autocomplete
-from .views import calculator, time_display, ClassAutocomplete
+from .views import calculator, time_display, ClassAutocomplete, about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', calculator),
     path('time_display', time_display),
+    path('about', about),
     url(r'^class-autocomplete/$',
         ClassAutocomplete.as_view(),
         name='class-autocomplete',

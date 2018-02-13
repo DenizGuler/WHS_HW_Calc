@@ -1,10 +1,12 @@
 {% extends "Calculator/base.html" %}
 
 {% block content %}
-	<h2>Estimated Nightly Homework:</h2>
+	<h2>Estimated Nightly Homework:*</h2>
 	<h1>{{hours}} hours and {{mins}} minutes<h1>
 	<h3>Time Breakdown:</h3>
 	{% for class, time in schedule %}
 		<p><strong>{{class}}</strong> takes <strong>{{time}}</strong> minutes per day</p>
 	{% endfor %}
+	<p>*This is the average amount of hours/minutes that these classes, etc. will take.
+			This figure does not take into acount special projects or studying</p>
 {% endblock %}

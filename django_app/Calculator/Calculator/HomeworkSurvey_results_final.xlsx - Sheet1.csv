@@ -4,6 +4,7 @@
 """On average how much time, in minutes per day, do you spend on homework, studying, ",,,,,
 "or practicing for this class?""",,,,,
 ,Quartile 1 *,Median (minutes),Quartile 3 *,,Number of Responses
+Study Hall,0,0,0,,0
 French 2,14,20,30,,40
 French 3 (CP),10,20,25,,14
 French 3 (Honors),10,20,25,,17
